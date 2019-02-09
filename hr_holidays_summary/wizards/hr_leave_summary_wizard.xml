@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="hr_leave_summary_wizard_form" model="ir.ui.view">
+        <field name="name">hr.leave.summary.wizard.form</field>
+        <field name="model">hr.leave.summary.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Leaves Summary Wizard">
+                <group>
+                    <span nolabel="1">
+                        This wizard will generate leaves summary as of date selected.
+                    </span>
+                </group>
+                <group>
+                    <group>
+                        <field name="date"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_generate" string="Generate" type="object" default_focus="1" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_my_leaves_summary_wizard" model="ir.actions.act_window">
+        <field name="name">Leaves Summary</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.leave.summary.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <!-- <field name="context">{'default_invoice_ids': [(4, active_id, None)]}</field> -->
+    </record>
+
+    <menuitem
+        id="menu_my_leaves_summary_wizard"
+        parent="hr_holidays.menu_hr_holidays_my_leaves"
+        action="action_my_leaves_summary_wizard"
+        name="Summary"
+    />
+
+    <record id="action_leaves_summary_wizard" model="ir.actions.act_window">
+        <field name="name">Leaves Summary</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.leave.summary.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <!-- <field name="context">{'default_invoice_ids': [(4, active_id, None)]}</field> -->
+    </record>
+
+    <menuitem
+        id="menu_leaves_summary_wizard"
+        parent="hr_holidays.menu_hr_holidays_report"
+        action="action_leaves_summary_wizard"
+        name="Summary"
+    />
+
+    <record model="ir.ui.menu" id="hr_holidays.menu_open_company_allocation">
+        <field name="active" eval="False"/>
+    </record>
+
+</odoo>
